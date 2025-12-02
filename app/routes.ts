@@ -4,5 +4,6 @@ export default [index("routes/home.tsx"),
     route("/playlist" , "routes/playlist.tsx"),
     route("/historique" , 'routes/historique.tsx'),
     route("/shorts" , "routes/shorts.tsx"),
+    route("/video/:id", "routes/videoHorizentale.tsx" )
     //("*", "routes/error.tsx")
 ] satisfies RouteConfig;

@@ -1,7 +1,7 @@
 import "./MainNav.css"
 import { NavLink } from 'react-router';
 export default function MainNav() {
-  return (<>
+  return (
     <nav className='navbar'>
             <menu>
                 <ul>
@@ -41,6 +41,6 @@ export default function MainNav() {
             </menu>
         
         </nav>
-        </>
+        
     )
 }
