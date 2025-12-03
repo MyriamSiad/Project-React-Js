@@ -1,5 +1,7 @@
 import "./MainNav.css"
 import { NavLink } from 'react-router';
+import SearchBar from "@/components/SearchBar/SearchBar";
+import VideoProvider from "@/contexts/ApiContextVideo/ApiContextVideo";
 export default function MainNav() {
   return (
     <nav className='navbar'>
@@ -37,7 +39,10 @@ export default function MainNav() {
                     Shorts
                     </NavLink>
                 </li>
+                <VideoProvider><SearchBar/></VideoProvider>
+                
                 </ul>
+
             </menu>
         
         </nav>

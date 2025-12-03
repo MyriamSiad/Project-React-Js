@@ -1,11 +1,13 @@
-import { createContext,  useState, useEffect } from "react";
+import { createContext,  useState, useEffect, useMemo } from "react";
 
 export const VideosContext = createContext();
 
+
+   
 export default   function VideoProvider({children}) {
 
     const [videos , setVideos] = useState([]);
-   // const[shorts , setShorts] = useState([]);
+   const [searchTerm, setSearchTerm] = useState('');
     
     
     
@@ -34,20 +36,45 @@ async function fetchVideoH(){
     });
         setVideos(donneesVideoHorizontale);
         console.log(videos);
+
+       
       }catch(err){
         console.error(err);
       }
-   
-    }
+
+      
+}
+useEffect(() => {
+        // Appelez fetchVideoH() une seule fois au chargement du Provider
+        fetchVideoH(); 
+    }, []);
 
     
+const filteredVideos = useMemo(() => {
+        if (!searchTerm) {
+            return videos; // Si aucun terme, retournez les vidéos brutes
+        }
+        const term = searchTerm.toLowerCase();
+        
+        return videos.filter(video => {
+          console.log(video)
+            return video.tags.toLowerCase().includes(term);
+
+        });
+    }, [videos, searchTerm]);
+
+    const clearSearch = () => {
+    setSearchTerm("");
+};
   return (
     <>
         <VideosContext.Provider value ={{
-            videos, fetchVideoH
+            videos, fetchVideoH,filteredVideos,searchTerm,setSearchTerm, clearSearch
         }}>
             {children}
         </VideosContext.Provider>
     </>
   );
+
+  
 }

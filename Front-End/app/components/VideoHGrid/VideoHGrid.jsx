@@ -36,11 +36,13 @@ const {fetchVideoH , videos} = useContext(VideosContext)
                     
                     <div className="video-info">
                 <div className="channel-icon">
-                    <img 
-                        src={video.userImageURL} 
-                        alt={video.user}
+                    {video.userImageURL && (
+                        <img
+                        src={video.userImageURL}
+                        alt={video.user }
                         className="avatar"
-                    />
+                        />
+                    )}
                 </div>
                 <div className="video-details">
                     <h3 className="video-title">{video.tags}</h3>
