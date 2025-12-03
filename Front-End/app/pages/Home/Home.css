@@ -1,0 +1,41 @@
+.home-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f7ff;
+}
+
+.home-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80%;
+  margin: 1px auto 0;
+}
+
+.left-side {
+  width: 60%;
+  padding: 20px;
+}
+
+.right-side {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .home-content {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .right-side,
+  .left-side {
+    width: 100%;
+  }
+
+  .right-side {
+    justify-content: center;
+    margin-top: 20px;
+  }
+}
