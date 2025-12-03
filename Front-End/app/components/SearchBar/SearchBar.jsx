@@ -58,9 +58,11 @@ const boolFlag = false;
            
             {(/*!isLoading && !error) && (*/
                 <>
-                    {filteredVideos.length === 0 && searchTerm === null  || filteredVideos.length > 0  && searchTerm ===""?  (
+                    {searchTerm.trim() ==="" ?  (
+                        null
+                    ) :filteredVideos.length === 0 ?  (
                         <p>Aucun résultat trouvé pour "{searchTerm}".</p>
-                    ) : (
+                        ) : (
                         <div className="search-suggestions">
                             <p>Affichage de {filteredVideos.length} vidéos.</p>
                             {filteredVideos.map(video => (

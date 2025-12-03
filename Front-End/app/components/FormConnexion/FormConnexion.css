@@ -1,0 +1,70 @@
+/* ----- Conteneur à droite ----- */
+.form-container {
+    width: 350px;
+    background: #ffffff;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: absolute;
+    left: 40%;  
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: Arial, sans-serif;
+}
+
+/* ----- Formulaire ----- */
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Labels */
+.form-container label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Inputs */
+.form-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.form-container input:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74,144,226,0.3);
+}
+
+/* Bouton */
+.form-container button {
+    margin-top: 10px;
+    padding: 10px;
+    background: #4a90e2;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-container button:hover {
+   background-color: #ffffff33;
+  color: #ffd500;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .form-container {
+        position: static;
+        transform: none;
+        margin: 20px auto;
+    }
+}
