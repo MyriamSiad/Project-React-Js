@@ -56,22 +56,13 @@ const {fetchShorts, shorts} = useContext(ShortsContext)
 
             {/* VIDÉO */}
             <video
-              src={short.url}
-              poster={short.thumbnail}
-              muted
-              controls
-              playsInline
-              className="h-full w-full object-contain pointer-events-auto"
-              onClick={(e) => {
-                if (e.target.tagName !== "VIDEO") return;
-
-                if (e.target.paused) {
-                  e.target.play();
-                } else {
-                  e.target.pause();
-                }
-              }}
-            />
+            src={short.url}
+            poster={short.thumbnail}
+            muted
+            controls
+            playsInline
+            className="h-full w-full object-contain pointer-events-auto"
+          />
 
             {/* OVERLAY DÉGRADÉ (NE BLOQUE PLUS LES CLICS) */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none" />

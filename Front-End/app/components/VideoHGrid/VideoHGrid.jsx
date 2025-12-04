@@ -71,7 +71,7 @@ const {fetchVideoH , videos} = useContext(VideosContext)
 return(
     <>  
     <div className="px-6 py-8">
- 
+  <h2 className="text-3xl font-bold mb-8 text-white">🎬 Vidéos Pixabay</h2>
 
   {videos.length === 0 ? (
     <p className="text-gray-400">Aucune vidéo trouvée.</p>
@@ -122,7 +122,7 @@ return(
 
                 <button
                   onClick={() => toggleVideoInPlaylist(video)}
-                  className="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded"
+                  className="text-xs bg-indigo-600 active:bg-green-600 transition  hover:bg-indigo-700 text-white px-3 py-1 rounded"
                 >
                   ➕ Playlist
                 </button>
