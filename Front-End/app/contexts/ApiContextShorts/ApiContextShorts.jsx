@@ -41,6 +41,8 @@ async function fetchShorts(){
    
     }
 
+// Exemple d'appel :
+// addVideoToHistory('abc123def456');
     
   return (
     <>

@@ -1,10 +1,78 @@
 import { useLocation, Link } from "react-router";
 import "./SingleVideoHComponent.css"
+import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
 
+const addVideoToHistory = async (videoData) => {
+    console.log("📤 ENVOI AU SERVEUR");
+    console.log("videoData reçu:", videoData);
+    try {
+       const token = sessionStorage.getItem('authToken');
+      
+       console.log(token);
+      if (!token) return;
+       if (token) {
+            try {
+                let decodedToken = null;
+                decodedToken = jwtDecode(token);
+                const response = await fetch('http://localhost:5000/api/historiqueAdd', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+            
+            // Le corps JSON inclut TOUTES les données que le serveur doit recevoir
+            body: JSON.stringify({
+                //userId : decodedToken.userId,
+                // Données obligatoires
+                videoId: videoData.id,
+                videoThumbnail : videoData.thumbnail,
+                videoUrl: videoData.url,
+                videoTags: videoData.tags,
+                
+            })
+            
+           
+        });
+        const data = await response.json(); // Lire la réponse même en cas d'erreur
+
+      if (response.ok) {
+          console.log("Historique mis à jour :", data);
+      } else if (response.status === 401) {
+          console.error("Token invalide. Déconnexion requise.");
+          // Logique de déconnexion
+      } else {
+          console.error("Échec de l'ajout à l'historique:", data);
+      }
+             
+            } catch (error) {
+                console.error("Erreur de décodage du token:", error);
+            }
+        }
+
+        
+        
+    } catch (error) {
+        console.error("Erreur réseau :", error);
+    }
+};
 export default function SingleVideoHorizontale() {
+
+  
   const { state } = useLocation();
   const video = state?.video; // Récupère la vidéo passée depuis le Link
 
+    
+    useEffect(() => {
+        // Condition: S'assurer que les données de la vidéo existent et que l'utilisateur est connecté
+        if (video && sessionStorage.getItem('authToken')) {
+            // Appel de la fonction pour enregistrer dans l'historique
+            addVideoToHistory(video);
+        }
+
+    }, [video]);
+  
   if (!video) return <h2>Vidéo introuvable</h2>;
 
   return (

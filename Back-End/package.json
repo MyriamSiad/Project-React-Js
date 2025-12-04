@@ -12,9 +12,11 @@
   
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "kill": "taskkill /F /IM node.exe || killall node"
   },
   "name": "back-end",
+  "type": "module",
   "private": true,
   "devDependencies": {
     "@types/bun": "latest"

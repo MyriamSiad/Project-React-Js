@@ -36,57 +36,67 @@ const boolFlag = false;
     };
   return (
     <>
-  <div className="search-wrapper" ref={dropdownRef}>
-            <h2>Recherche Vidéos</h2>
-            
-            {/* La barre de recherche */}
-            <input
-            id='inputSearchbar'
-                type="text"
-                className="search-input"
-                placeholder="Rechercher par titre ou mot-clé..."
-                value={searchTerm}
-                onChange={e => handleInputUser(e.target.value)}
-                style={{ width: '100%', padding: '10px', marginBottom: '20px' }}
-            />
-            
-            
-            {/* Messages d'état */}
-            {/*isLoading && <div>Chargement des vidéos...</div>*/}
-            {/*error && <div style={{ color: 'red' }}>Erreur: {error}</div>*/}
-            
-           
-            {(/*!isLoading && !error) && (*/
-                <>
-                    {searchTerm.trim() ==="" ?  (
-                        null
-                    ) :filteredVideos.length === 0 ?  (
-                        <p>Aucun résultat trouvé pour "{searchTerm}".</p>
-                        ) : (
-                        <div className="search-suggestions">
-                            <p>Affichage de {filteredVideos.length} vidéos.</p>
-                            {filteredVideos.map(video => (
-                            
-                              <div         
-                                key={video.id}> 
-                                  <Link
-                                    to={`/video/${video.id}`}
-                                    key={video.id}
-                                    className="video-card"
-                                    state={{ video }}
-                                    onClick={e => clearSearch()}
-                                  >
-                                    <h3>Tags: {video.tags}</h3>
-                                    {/* Ajoutez d'autres détails ou le lecteur vidéo ici */}
-                                    <p>Durée: {video.duration}s</p>
-                                    </Link> 
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </>
-            )}
-        </div>
+  <div className="relative w-full max-w-xs" ref={dropdownRef}>
+
+  {/* INPUT */}
+  <input
+    id="inputSearchbar"
+    type="text"
+    placeholder="Rechercher une vidéo..."
+    value={searchTerm}
+    onChange={e => handleInputUser(e.target.value)}
+    className="w-full bg-gray-800 text-white placeholder-gray-400
+               border border-gray-700 rounded-lg px-4 py-2 text-sm
+               focus:outline-none focus:ring-2 focus:ring-indigo-500
+               transition"
+  />
+
+  {/* DROPDOWN RÉSULTATS */}
+  {searchTerm.trim() !== "" && (
+    <div className="absolute top-12 left-0 w-full bg-gray-900 border border-gray-800 rounded-xl shadow-xl z-50 max-h-80 overflow-y-auto">
+
+      {filteredVideos.length === 0 ? (
+        <p className="text-gray-400 text-sm px-4 py-3">
+          Aucun résultat pour "{searchTerm}"
+        </p>
+      ) : (
+        <>
+          <p className="text-gray-400 text-xs px-4 py-2 border-b border-gray-800">
+            {filteredVideos.length} résultat(s)
+          </p>
+
+          {filteredVideos.map(video => (
+            <Link
+              key={video.id}
+              to={`/video/${video.id}`}
+              state={{ video }}
+              onClick={clearSearch}
+              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-800 transition"
+            >
+              {/* Petite image */}
+              <img
+                src={video.thumbnail}
+                alt={video.tags}
+                className="w-14 h-10 object-cover rounded"
+              />
+
+              {/* Texte */}
+              <div className="flex-1">
+                <h3 className="text-white text-xs font-semibold line-clamp-1">
+                  {video.tags}
+                </h3>
+                <p className="text-gray-400 text-[11px]">
+                  {Math.floor(video.duration)}s
+                </p>
+              </div>
+            </Link>
+          ))}
+        </>
+      )}
+    </div>
+  )}
+</div>
+
     </>
   );
 }

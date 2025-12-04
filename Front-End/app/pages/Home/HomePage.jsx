@@ -17,21 +17,50 @@ export default function HomePage() {
     }, []);
     return(<>
     
-    <h1>Je suis la page d'acceuil</h1>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+
+  {/* HERO SECTION */}
+  <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+    {/* TEXTE À GAUCHE */}
+    <div className="space-y-6">
+      <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+        🎬 Bienvenue sur ta plateforme vidéo
+      </h1>
+
+      <p className="text-gray-400 text-lg">
+        Découvre, regarde et sauvegarde les meilleures vidéos gratuites.  
+        Crée ta playlist et profite de ton espace personnel.
+      </p>
+
+      <div className="flex gap-4">
+        <button className="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg font-semibold transition">
+          Explorer
+        </button>
+
+        <button className="border border-gray-600 hover:border-white px-6 py-3 rounded-lg font-semibold transition">
+          En savoir plus
+        </button>
+      </div>
+    </div>
+
+    {/* FORMULAIRE À DROITE */}
+    <div className="bg-gray-900 p-6 rounded-xl shadow-lg">
+      {!connecte && <Inscription />}
+    </div>
+
+  </div>
+
+  {/* SECTION VIDÉOS */}
+  <div className="max-w-7xl mx-auto px-6 pb-20">
+    <h2 className="text-3xl font-bold mb-8">🔥 Tendances actuelles</h2>
+
     <VideoProvider>
-         <VideoHGrid/>
+      <VideoHGrid />
     </VideoProvider>
-    <div className="home-page">
-            <div className="home-content">
-                <div className="left-side">
-                    <h1>Bienvenue !</h1>
-                    <p> </p>
-                </div>
-                <div className="right-side">
-                    {/* Affiche le formulaire seulement si l'utilisateur n'est pas connecté */}
-                    {!connecte && <Inscription />}
-                </div>
-            </div>
-        </div>
+  </div>
+
+</div>
+
     </>)
 }
