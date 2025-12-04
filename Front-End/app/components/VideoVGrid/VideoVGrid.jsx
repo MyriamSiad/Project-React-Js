@@ -48,22 +48,23 @@ const {fetchShorts, shorts} = useContext(ShortsContext)
       shorts.map((short) => (
         <div
           key={short.id}
-          className="relative h-screen snap-start flex items-center justify-center"
+          className="relative h-[92vh] snap-start flex items-center justify-center"
         >
 
           {/* CONTAINER VERTICAL */}
-          <div className="relative w-full h-full md:aspect-[9/16] bg-black overflow-hidden md:rounded-2xl">
+          <div className="relative w-full h-full md:aspect-[9/16] bg-black md:rounded-2xl">
 
             {/* VIDÉO */}
             <video
               src={short.url}
               poster={short.thumbnail}
-              autoPlay
-              loop
               muted
+              controls
               playsInline
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain pointer-events-auto"
               onClick={(e) => {
+                if (e.target.tagName !== "VIDEO") return;
+
                 if (e.target.paused) {
                   e.target.play();
                 } else {
@@ -72,12 +73,11 @@ const {fetchShorts, shorts} = useContext(ShortsContext)
               }}
             />
 
-            {/* OVERLAY DÉGRADÉ */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
+            {/* OVERLAY DÉGRADÉ (NE BLOQUE PLUS LES CLICS) */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none" />
 
             {/* INFOS CRÉATEUR */}
-            <div className="absolute bottom-20 left-4 text-white max-w-[80%]">
-
+            <div className="absolute bottom-20 left-4 text-white max-w-[80%] z-10 pointer-events-auto">
               <div className="flex items-center gap-3 mb-3">
                 <img
                   src={short.userImageURL}
@@ -99,7 +99,7 @@ const {fetchShorts, shorts} = useContext(ShortsContext)
             </div>
 
             {/* ACTIONS À DROITE */}
-            <div className="absolute bottom-20 right-4 flex flex-col items-center gap-6 text-white">
+            <div className="absolute bottom-20 right-4 flex flex-col items-center gap-6 text-white z-10 pointer-events-auto">
 
               {/* LIKE */}
               <button className="flex flex-col items-center gap-1 hover:scale-110 transition">
@@ -131,8 +131,10 @@ const {fetchShorts, shorts} = useContext(ShortsContext)
         </div>
       ))
     )}
+
   </div>
 </div>
+
 
 
     </>

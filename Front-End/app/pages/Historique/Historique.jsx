@@ -105,14 +105,11 @@ export default  function HistoriquePage() {
         ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {historique.map((item) => (
-                    <>
-                  
                     <div 
                         key={item._id}
                         className="group bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-1"
                     >
-                        
-                       
+                        <Link to={`/video/${item._id}`} state={{ item }} className="block">
                         {/* Miniature vidéo */}
                         <div className="relative aspect-video bg-gradient-to-br from-purple-600 to-blue-600 overflow-hidden">
                             <video 
@@ -128,7 +125,7 @@ export default  function HistoriquePage() {
                                 </div>
                             </div>
                         </div>
-                       
+                        </Link>
                         {/* Informations */}
                         <div className="p-4">
                             <div className="flex items-start justify-between mb-3">
@@ -164,10 +161,18 @@ export default  function HistoriquePage() {
                             </div>
 
                             {/* Bouton de lecture */}
-                           
+                            <button 
+                                onClick={() => window.location.href = item.videoUrl}
+                                className="mt-4 w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 rounded-lg font-medium hover:from-purple-700 hover:to-blue-700 transition-all duration-300 flex items-center justify-center gap-2"
+                            >
+                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                Regarder à nouveau
+                            </button>
                         </div>
                     </div>
-                </>))}
+                ))}
             </div>
         )}
     </div>
