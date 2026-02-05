@@ -4,6 +4,8 @@ import { NavLink } from 'react-router';
 import SearchBar from "@/components/SearchBar/SearchBar";
 import VideoProvider from "@/contexts/ApiContextVideo/ApiContextVideo";
 import { useNavigate } from 'react-router';
+
+
 export default function MainNav() {
  const [connecte, setConnecte] = useState(false);
   const navigate = useNavigate();
