@@ -91,7 +91,6 @@ const verifierAuth = (req, res, next) => {
         
        const decodedToken = jwt.verify(token, JWT_SECRET);
     
-       console.log(decodedToken)
        req.auth = { userId: decodedToken.userId };
 
        next(); // C'est bon, passe à la suite ! */
@@ -109,21 +108,15 @@ const verifierAuth = (req, res, next) => {
 };
 const addVideoToHistory = async (req, res) => {
 
-console.log("🚀🚀🚀 JE SUIS APPELÉ !!!");
+
     try{
    /* const { videoId, videoUrl, videoTags} = req.body;
     const userId =  req.auth.userId;*/
      const userId = req.auth.userId;
         const { videoId, videoUrl, videoTags,  videoThumbnail } = req.body;
         
-        // 🔍 LOGS DE DÉBOGAGE
-        console.log("=== DONNÉES REÇUES ===");
-        console.log("userId (depuis JWT):", userId);
-        console.log("videoId:", videoId);
-        console.log("videoUrl:", videoUrl);
-        console.log("videoTags:", videoTags);
-        console.log("req.body complet:", req.body);
-        
+  
+      
    if (!videoId || !videoTags || !videoUrl || !userId) {
         return res.status(400).json({ message: "L'ID de la vidéo est requis." });
     }
@@ -144,10 +137,6 @@ console.log("🚀🚀🚀 JE SUIS APPELÉ !!!");
                 }
             );
 
-            console.log("✅ Résultat de findOneAndUpdate :", result);
-            console.log("📝 ID du document :", result._id);
-            console.log("👤 UserID :", result.userId);
-            console.log("🎬 VideoID :", result.videoId);
 
             // Vérification immédiate : on relit ce qu'on vient d'écrire
             const verif = await Historique.findById(result._id);
@@ -288,4 +277,4 @@ app.post("/api/login", async (req, res) => {
 
 
 
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
