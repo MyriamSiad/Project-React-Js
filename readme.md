@@ -177,6 +177,10 @@ L’objectif était de :
 Ce projet illustre ma capacité à **prioriser les fonctionnalités essentielles**, **travailler efficacement sous contrainte de temps**, et **livrer un produit cohérent et maintenable**.
 
 ---
+<img width="1886" height="896" alt="Capture d’écran 2026-02-07 105525" src="https://github.com/user-attachments/assets/a8c7134c-8202-40ae-8875-45c91278e828" />
+<img width="1917" height="909" alt="Capture d’écran 2026-02-07 105626" src="https://github.com/user-attachments/assets/c19abf89-dbf9-4eb6-9eec-51ff4f6b7861" />
+<img width="1872" height="883" alt="Capture d’écran 2026-02-07 105642" src="https://github.com/user-attachments/assets/426edc5c-6595-4bf9-aab9-ce9ac082219d" />
+<img width="1855" height="902" alt="Capture d’écran 2026-02-07 105702" src="https://github.com/user-attachments/assets/d34d21f7-9536-4fad-bd40-0ce613612314" />
 
 ## 📄 Licence
 
