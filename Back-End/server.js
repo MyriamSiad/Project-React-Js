@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 dotenv.config();
 const app = express();
 app.use(express.json());
-//mongodb+srv://siadmyriam:migi@cluster0.ltzhjze.mongodb.net/
+
 
 app.use(cors({ origin: "http://localhost:5173" })); 
 //On définit les ressources que le serveur à le droit d'utiliser
